@@ -131,7 +131,7 @@ class Game:
         self.ship_position = self.ship_position + self.ship_velocity * delta_time
         
         # Ограничиваем позицию
-        max_distance = 100
+        max_distance = 300
         if self.ship_position.magnitude() > max_distance:
             self.ship_position = self.ship_position.normalize() * max_distance
     
@@ -154,9 +154,9 @@ class Game:
         # ПРИБЛИЗИЛИ камеру с 15 до 8, чтобы корабль был крупнее
         camera_offset = Vector3(0, 0, 8)
         
-        rotation_matrix = (Matrix3x3.rotation_z(self.ship_rotation_z) * 
-                  Matrix3x3.rotation_y(self.ship_rotation_y) * 
-                  Matrix3x3.rotation_x(self.ship_rotation_x))
+        rotation_matrix = (Matrix3x3.rotation_x(self.ship_rotation_x) * 
+                          Matrix3x3.rotation_y(self.ship_rotation_y) * 
+                          Matrix3x3.rotation_z(self.ship_rotation_z))
         
         lines = self.renderer.render_mesh(
             self.ship_mesh,
